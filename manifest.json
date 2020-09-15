@@ -1,0 +1,18 @@
+{
+  "manifest_version": 2,
+  "name": "Scroll Tracker",
+  "version": "0.1",
+
+  "description": "Browser extension to track your scrolling distance",
+
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["script.js"]
+    }
+  ],
+  "background": {
+    "scripts": ["background.js"]
+  },
+  "permissions": ["storage"]
+}
