@@ -14,5 +14,10 @@
   "background": {
     "scripts": ["background.js"]
   },
-  "permissions": ["storage"]
+  "permissions": ["storage"],
+  "browser_action": {
+    "default_title": "Scroll Tracker",
+    "default_popup": "popup/popup.html",
+    "browser_style": true
+  }
 }
