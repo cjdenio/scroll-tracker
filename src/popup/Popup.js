@@ -1,33 +1,43 @@
-import React from "react";
+import React, { useEffect } from "react";
+import useSWR from "swr";
 
 import { ListGroup, ListGroupItem, Button } from "shards-react";
 
-import useSWR from "swr";
-
 function deleteData() {
   return new Promise((resolve, reject) => {
-    console.log("yeah 1");
     browser.storage.local.set({ data: {} }).then(() => {
-      console.log("yeah 2");
       resolve();
     });
   });
+}
+
+function processData(data) {
+  return Object.keys(data)
+    .map((e) => ({
+      site: e,
+      distance: data[e],
+    }))
+    .sort((a, b) => b.distance - a.distance);
 }
 
 function Popup(props) {
   const { data, error, mutate } = useSWR("data", () => {
     return new Promise((resolve, reject) => {
       browser.storage.local.get("data").then((data) => {
-        resolve(
-          Object.keys(data.data)
-            .map((e) => ({
-              site: e,
-              distance: data.data[e],
-            }))
-            .sort((a, b) => b.distance - a.distance)
-        );
+        resolve(processData(data.data));
       });
     });
+  });
+
+  useEffect(() => {
+    const handler = (e) => {
+      mutate(e.data?.newValue ? processData(e.data?.newValue) : []);
+    };
+    browser.storage.onChanged.addListener(handler);
+
+    return () => {
+      browser.storage.onChanged.removeListener(handler);
+    };
   });
 
   if (!data) {
@@ -48,7 +58,10 @@ function Popup(props) {
         <ListGroup>
           {data.map((e) => (
             <ListGroupItem key={e.site}>
-              {e.site} - <b>{e.distance}</b>
+              {e.site} -{" "}
+              <b>
+                {e.distance.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")} px
+              </b>
             </ListGroupItem>
           ))}
         </ListGroup>
@@ -56,7 +69,7 @@ function Popup(props) {
           block
           theme="danger"
           style={{ marginTop: 20 }}
-          onClick={deleteData().then(() => mutate({}))}
+          onClick={() => deleteData().then(() => mutate([]))}
         >
           Clear Data
         </Button>

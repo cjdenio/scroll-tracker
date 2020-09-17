@@ -15,11 +15,9 @@
 
   setInterval(async () => {
     await browser.storage.local.set({ data });
-    console.log("saved");
   }, 1000);
 
   browser.storage.onChanged.addListener((e) => {
-    console.log("stuffs changed: ", e);
     data = e.data?.newValue || {};
   });
 })();
