@@ -20,10 +20,12 @@
     "webpack-cli": "^3.3.12"
   },
   "dependencies": {
+    "luxon": "^1.25.0",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "shards-react": "^1.0.3",
-    "swr": "^0.3.2"
+    "swr": "^0.3.2",
+    "wouter": "^2.5.1"
   },
   "scripts": {
     "watch": "webpack --watch --mode=development",

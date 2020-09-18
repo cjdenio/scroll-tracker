@@ -1,4 +1,5 @@
 import browser from "webextension-polyfill";
+import { DateTime } from "luxon";
 
 (async () => {
   let data = (await browser.storage.local.get("data"))["data"] || {};
@@ -7,10 +8,16 @@ import browser from "webextension-polyfill";
   browser.runtime.onConnect.addListener((port) => {
     port.onMessage.addListener(({ page, distance }) => {
       console.log(`Someone scrolled on ${page}!`);
-      if (!data[page]) {
-        data[page] = distance;
+      const today = DateTime.local().toISODate();
+
+      if (!data[today]) {
+        data[today] = {
+          [page]: distance,
+        };
+      } else if (!data[today][page]) {
+        data[today][page] = distance;
       } else {
-        data[page] += distance;
+        data[today][page] += distance;
       }
     });
   });
