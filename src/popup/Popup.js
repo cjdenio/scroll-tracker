@@ -54,28 +54,26 @@ function Popup(props) {
   }
 
   return (
-    <>
-      <div>
-        <ListGroup>
-          {data.map((e) => (
-            <ListGroupItem key={e.site}>
-              {e.site} -{" "}
-              <b>
-                {e.distance.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")} px
-              </b>
-            </ListGroupItem>
-          ))}
-        </ListGroup>
-        <Button
-          block
-          theme="danger"
-          style={{ marginTop: 20 }}
-          onClick={() => deleteData().then(() => mutate([]))}
-        >
-          Clear Data
-        </Button>
-      </div>
-    </>
+    <div>
+      <ListGroup>
+        {data.map((e) => (
+          <ListGroupItem key={e.site}>
+            {e.site} -{" "}
+            <b>
+              {e.distance.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")} px
+            </b>
+          </ListGroupItem>
+        ))}
+      </ListGroup>
+      <Button
+        block
+        theme="danger"
+        style={{ marginTop: 20 }}
+        onClick={() => deleteData().then(() => mutate([]))}
+      >
+        Clear Data
+      </Button>
+    </div>
   );
 }
 
