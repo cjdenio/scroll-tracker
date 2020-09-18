@@ -14,6 +14,7 @@
     "css-loader": "^4.3.0",
     "html-webpack-plugin": "^4.4.1",
     "style-loader": "^1.2.1",
+    "webextension-polyfill": "^0.6.0",
     "webpack": "^4.44.1",
     "webpack-cli": "^3.3.12"
   },
@@ -24,6 +25,8 @@
     "swr": "^0.3.2"
   },
   "scripts": {
-    "watch": "webpack --watch --mode=development"
+    "watch": "webpack --watch --mode=development",
+    "build": "webpack --mode=production",
+    "build:dev": "webpack --mode=development"
   }
 }

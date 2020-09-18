@@ -1,10 +1,16 @@
 html,
-body {
-  height: 100%;
+body,
+#root {
   margin: 0;
   border: none;
+  overflow: auto;
 }
 
 body {
+  max-height: 500px;
+  width: 400px;
+}
+
+#root {
   padding: 20px;
 }

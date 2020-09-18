@@ -8,11 +8,17 @@
   "content_scripts": [
     {
       "matches": ["<all_urls>"],
-      "js": ["script.js"]
+      "js": [
+        "node_modules/webextension-polyfill/dist/browser-polyfill.min.js",
+        "script.js"
+      ]
     }
   ],
   "background": {
-    "scripts": ["background.js"]
+    "scripts": [
+      "node_modules/webextension-polyfill/dist/browser-polyfill.min.js",
+      "background.js"
+    ]
   },
   "permissions": ["storage"],
   "browser_action": {

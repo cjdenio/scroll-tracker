@@ -3,12 +3,10 @@ import useSWR from "swr";
 
 import { ListGroup, ListGroupItem, Button } from "shards-react";
 
-function deleteData() {
-  return new Promise((resolve, reject) => {
-    browser.storage.local.set({ data: {} }).then(() => {
-      resolve();
-    });
-  });
+import browser from "webextension-polyfill";
+
+async function deleteData() {
+  await browser.storage.local.set({ data: {} });
 }
 
 function processData(data) {
@@ -21,12 +19,8 @@ function processData(data) {
 }
 
 function Popup(props) {
-  const { data, error, mutate } = useSWR("data", () => {
-    return new Promise((resolve, reject) => {
-      browser.storage.local.get("data").then((data) => {
-        resolve(processData(data.data));
-      });
-    });
+  const { data, error, mutate } = useSWR("data", async () => {
+    return processData((await browser.storage.local.get("data")).data);
   });
 
   useEffect(() => {
@@ -46,7 +40,14 @@ function Popup(props) {
 
   if (data.length == 0) {
     return (
-      <div style={{ margin: "100px 0" }}>
+      <div
+        style={{
+          height: "200px",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+        }}
+      >
         No data yet. Go scroll on some pages, then come back!
       </div>
     );
@@ -54,7 +55,7 @@ function Popup(props) {
 
   return (
     <>
-      <div style={{ width: "400px" }}>
+      <div>
         <ListGroup>
           {data.map((e) => (
             <ListGroupItem key={e.site}>

@@ -1,5 +1,5 @@
 (async () => {
-  let data = (await browser.storage.local.get("data"))["data"];
+  let data = (await browser.storage.local.get("data"))["data"] || {};
   console.log(data);
 
   browser.runtime.onConnect.addListener((port) => {
