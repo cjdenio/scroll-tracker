@@ -1,3 +1,5 @@
+import browser from "webextension-polyfill";
+
 (async () => {
   let data = (await browser.storage.local.get("data"))["data"] || {};
   console.log(data);

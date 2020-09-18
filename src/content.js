@@ -1,3 +1,5 @@
+import browser from "webextension-polyfill";
+
 let port = browser.runtime.connect();
 
 let previousPosition = pageYOffset;

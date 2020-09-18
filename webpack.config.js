@@ -4,6 +4,8 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 module.exports = {
   entry: {
     popup: "./src/popup/index.js",
+    content: "./src/content.js",
+    background: "./src/background.js",
   },
   output: {
     path: path.join(__dirname, "dist"),
