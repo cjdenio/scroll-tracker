@@ -29,4 +29,13 @@ import { DateTime } from "luxon";
   browser.storage.onChanged.addListener((e) => {
     data = e.data?.newValue || {};
   });
+
+  browser.runtime.onMessage.addListener(async (req, sender, ack) => {
+    if (req == "clear") {
+      console.log("clear");
+      await browser.storage.local.set({ data: {} });
+      data = {};
+      ack();
+    }
+  });
 })();
