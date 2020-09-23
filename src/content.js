@@ -2,6 +2,8 @@ import browser from "webextension-polyfill";
 
 let port = browser.runtime.connect();
 
+port.onMessage.addListener((m) => console.log(m));
+
 let previousPosition = pageYOffset;
 
 document.body.onscroll = (e) => {
@@ -11,3 +13,9 @@ document.body.onscroll = (e) => {
   });
   previousPosition = pageYOffset;
 };
+
+port.onDisconnect.addListener((p) => {
+  if (p.error) {
+    console.log(`Disconnected due to an error: ${p.error.message}`);
+  }
+});
