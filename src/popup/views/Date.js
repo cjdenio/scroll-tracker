@@ -2,6 +2,8 @@ import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronLeft } from "@fortawesome/free-solid-svg-icons";
 
+import PropTypes from "prop-types";
+
 import { Button, ListGroup, ListGroupItem } from "shards-react";
 
 import useSWR from "swr";
@@ -10,9 +12,9 @@ import { getDay } from "../../lib/storage";
 
 import { DateTime } from "luxon";
 
-function Date(props) {
+function Date({ params: { date } }) {
   const { data, error } = useSWR("day", async () => {
-    return await getDay(props.params.date);
+    return await getDay(date);
   });
 
   if (error) {
@@ -34,9 +36,7 @@ function Date(props) {
       </Button>
 
       <h3 style={{ fontSize: 20, textAlign: "center" }}>
-        Stats for{" "}
-        {DateTime.fromISO(props.params.date).toLocaleString(DateTime.DATE_FULL)}
-        :
+        Stats for {DateTime.fromISO(date).toLocaleString(DateTime.DATE_FULL)}:
       </h3>
       <ListGroup>
         {data.map((e) => (
@@ -51,5 +51,9 @@ function Date(props) {
     </div>
   );
 }
+
+Date.propTypes = {
+  params: PropTypes.object,
+};
 
 export default Date;

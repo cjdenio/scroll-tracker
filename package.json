@@ -12,6 +12,8 @@
     "@babel/preset-react": "^7.10.4",
     "babel-loader": "^8.1.0",
     "css-loader": "^4.3.0",
+    "eslint": "^7.9.0",
+    "eslint-plugin-react": "^7.21.0",
     "html-webpack-plugin": "^4.4.1",
     "prettier": "^2.1.2",
     "style-loader": "^1.2.1",
@@ -24,6 +26,7 @@
     "@fortawesome/free-solid-svg-icons": "^5.14.0",
     "@fortawesome/react-fontawesome": "^0.1.11",
     "luxon": "^1.25.0",
+    "prop-types": "^15.7.2",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "shards-react": "^1.0.3",
@@ -34,6 +37,7 @@
     "watch": "webpack --watch --mode=development",
     "build": "webpack --mode=production",
     "build:dev": "webpack --mode=development",
-    "format:check": "prettier --check ."
+    "format:check": "prettier --check .",
+    "lint:check": "eslint src/"
   }
 }

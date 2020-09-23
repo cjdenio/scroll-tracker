@@ -6,7 +6,7 @@ port.onMessage.addListener((m) => console.log(m));
 
 let previousPosition = pageYOffset;
 
-document.body.onscroll = (e) => {
+document.body.onscroll = () => {
   port.postMessage({
     page: location.host,
     distance: Math.ceil(Math.abs(pageYOffset - previousPosition)),
