@@ -11,7 +11,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCalendarAlt, faMouse } from "@fortawesome/free-solid-svg-icons";
 
 function Index() {
-  const { data, error, mutate } = useSWR("data", getTodaysEntries);
+  const { data, error } = useSWR("data", getTodaysEntries);
 
   if (error) {
     return <p>Error loading data.</p>;
@@ -51,10 +51,10 @@ function Index() {
     <div>
       <h3 style={{ fontSize: 20 }}>
         <FontAwesomeIcon icon={faMouse} style={{ marginRight: 10 }} />
-        Today's scrolling stats:
+        Today&apos;s scrolling stats:
       </h3>
       <p>
-        You've scrolled <b>{addCommas(getTotalPx(data))} px</b> today.
+        You&apos;ve scrolled <b>{addCommas(getTotalPx(data))} px</b> today.
       </p>
       <ListGroup style={{ textAlign: "left" }}>
         {data.map((e) => (

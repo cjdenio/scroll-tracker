@@ -10,7 +10,7 @@ import { faChevronLeft, faTrash } from "@fortawesome/free-solid-svg-icons";
 import { addCommas } from "../../lib/lib";
 
 function All() {
-  const [loc, setLoc] = useLocation();
+  const [, setLoc] = useLocation();
   const { data, error } = useSWR("days", getAllDays);
 
   if (error) {

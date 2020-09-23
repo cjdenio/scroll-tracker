@@ -1,8 +1,10 @@
 import browser from "webextension-polyfill";
 import { DateTime } from "luxon";
 
+let data = {};
+
 (async () => {
-  let data = (await browser.storage.local.get("data"))["data"] || {};
+  data = (await browser.storage.local.get("data"))["data"] || {};
   console.log(data);
 
   setInterval(async () => {
