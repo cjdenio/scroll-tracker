@@ -8,6 +8,7 @@ let data = {};
   console.log(data);
 
   setInterval(async () => {
+    // persist data every second
     await browser.storage.local.set({ data });
   }, 1000);
 
@@ -39,7 +40,7 @@ browser.runtime.onConnect.addListener((port) => {
   });
 });
 
-browser.runtime.onMessage.addListener(async (req, sender, ack) => {
+browser.runtime.onMessage.addListener(async ({ req }, sender, ack) => {
   if (req == "clear") {
     console.log("clear");
     await browser.storage.local.set({ data: {} });

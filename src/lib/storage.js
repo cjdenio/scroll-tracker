@@ -21,7 +21,7 @@ export async function getTodaysEntries() {
 
 export async function clearAllData() {
   //await browser.storage.local.set({ data: {} });
-  await browser.runtime.sendMessage("clear");
+  await browser.runtime.sendMessage({ req: "clear" });
 }
 
 export async function getAllDays() {
