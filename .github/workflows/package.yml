@@ -1,0 +1,15 @@
+name: Package
+on: push
+jobs:
+  package:
+    runs-on: ubuntu-latest
+    name: Package
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v2-beta
+      - run: yarn build
+      - run: zip -r /scroll-tracker.zip . -x "*node_modules/*" -x "*src/*" -x "*.git/*"
+      - uses: actions/upload-artifact@v2
+        with:
+          name: scroll-tracker.zip
+          path: /scroll-tracker.zip
