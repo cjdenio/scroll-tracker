@@ -1,5 +1,5 @@
 {
-  "name": "scroll-tracker",
+  "name": "scrolltracker",
   "version": "1.0.0",
   "description": "Browser extension to track your scrolling distance",
   "repository": "https://github.com/cjdenio/scroll-tracker.git",
