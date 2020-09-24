@@ -7,10 +7,12 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v2-beta
-      - run: yarn install
-      - run: yarn build
-      - run: zip -r /scroll-tracker.zip . -x "*node_modules/*" -x "*src/*" -x "*.git/*"
+      - run: echo "::set-env name=BUILD_PATH::$(mktemp -d)"
+      - run: |
+          yarn install
+          yarn build
+      - run: zip -r $BUILD_PATH/scroll-tracker.zip . -x "*node_modules/*" -x "*src/*" -x "*.git/*"
       - uses: actions/upload-artifact@v2
         with:
           name: scroll-tracker.zip
-          path: /scroll-tracker.zip
+          path: ${{ env.BUILD_PATH }}/scroll-tracker.zip
