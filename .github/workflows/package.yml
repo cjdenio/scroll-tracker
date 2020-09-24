@@ -7,6 +7,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v2-beta
+      - run: yarn install
       - run: yarn build
       - run: zip -r /scroll-tracker.zip . -x "*node_modules/*" -x "*src/*" -x "*.git/*"
       - uses: actions/upload-artifact@v2
