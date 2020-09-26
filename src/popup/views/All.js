@@ -37,15 +37,19 @@ function All() {
           <FontAwesomeIcon icon={faTrash} />
         </Button>
       </div>
-      <ListGroup>
-        {data.map((e) => (
-          <Link href={`/date/${e.iso}`} key={e.iso}>
-            <ListGroupItem className="clickable">
-              {e.date} - <b>{addCommas(getTotalPx(e.entries))} px</b>
-            </ListGroupItem>
-          </Link>
-        ))}
-      </ListGroup>
+      {data.length > 0 ? (
+        <ListGroup>
+          {data.map((e) => (
+            <Link href={`/date/${e.iso}`} key={e.iso}>
+              <ListGroupItem className="clickable">
+                {e.date} - <b>{addCommas(getTotalPx(e.entries))} px</b>
+              </ListGroupItem>
+            </Link>
+          ))}
+        </ListGroup>
+      ) : (
+        <p>No days yet!</p>
+      )}
     </div>
   );
 }
