@@ -2,7 +2,7 @@
 
 > Browser extension to track your scrolling distance
 
-[Install on Firefox](https://addons.mozilla.org/en-US/firefox/addon/scroll-tracker) · Chrome distribution currently under review
+[Install for Firefox](https://addons.mozilla.org/en-US/firefox/addon/scroll-tracker) · [Install for Chrome](https://chrome.google.com/webstore/detail/scroll-tracker/mefkhodoaoahcffhciblojjgmfpcgeod)
 
 ## Building
 
