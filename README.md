@@ -1,3 +1,4 @@
+<!-- DO NOT REMOVE - contributor_list:data:start:["cjdenio"]:end -->
 # scroll-tracker
 
 > Browser extension to track your scrolling distance
@@ -13,3 +14,11 @@ Run `yarn install` to install dependencies, then `yarn build` to build the JS st
 ## Development
 
 Use `yarn watch` to automatically rebuild your changes during development.
+
+<!-- DO NOT REMOVE - contributor_list:start -->
+## 👥 Contributors
+
+
+- **[@cjdenio](https://github.com/cjdenio)**
+
+<!-- DO NOT REMOVE - contributor_list:end -->
